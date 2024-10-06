@@ -1,0 +1,64 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "api": {
+    "playground": {
+      "mode": "simple"
+    }
+  },
+  "name": "ParDocs",
+  "logo": {
+    "dark": "/logo/dark.png",
+    "light": "/logo/light.png"
+  },
+  "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#3B4158",
+    "light": "#FA9C94",
+    "dark": "#3B4158",
+    "anchors": {
+      "from": "#3B4158",
+      "to": "#FA9C94"
+    }
+  },
+  "topbarLinks": [],
+  "topbarCtaButton": {
+    "name": "Dashboard",
+    "url": "https://www.pardocs.com"
+  },
+  "tabs": [],
+  "anchors": [
+    {
+      "name": "Community",
+      "icon": "discord",
+      "url": "https://discord.gg/xgEXkh7Rxk"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Get started",
+      "pages": ["introduction", "ratelimit", "error"]
+    },
+    {
+      "group": "Templates API",
+      "pages": [
+        "api-reference/templates/endpoint/get",
+        "api-reference/templates/endpoint/create",
+        "api-reference/templates/endpoint/patch",
+        "api-reference/templates/endpoint/delete"
+      ]
+    },
+    {
+      "group": "Documents API",
+      "pages": [
+        "api-reference/documents/endpoint/list",
+        "api-reference/documents/endpoint/create",
+        "api-reference/documents/endpoint/split",
+        "api-reference/documents/endpoint/extract",
+        "api-reference/documents/endpoint/get"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "discord": "https://discord.gg/xgEXkh7Rxk"
+  }
+}

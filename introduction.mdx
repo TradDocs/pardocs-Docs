@@ -1,0 +1,39 @@
+---
+title: Welcome to ParDocs
+---
+
+ParDocs is a powerful API designed to help you extract unstructured document content and convert it into a structured JSON format. This guide will provide you with everything you need to get started, set up your environment, and customize your integration with ParDocs.
+
+<Info>Looking for real-time support? Join our [Discord](https://discord.gg/xgEXkh7Rxk)</Info>
+
+# Accessing the API
+
+We offer two types of API keys:
+
+- **Production API Key**: Used for live, real-world applications with higher rate limits.
+- **Sandbox API Key**: Used for development and testing purposes with lower rate limits and a 4-week expiration period.
+
+To obtain a Production API key, you must log in to the [ParDocs Console](https://www.pardocs.com) and [Create a new API key](https://www.pardocs.com/api-keys).
+
+To obtain a Sandbox API key, please contact us directly on [Discord](https://discord.gg/xgEXkh7Rxk). We will assist you in setting up the appropriate access based on your needs.
+
+# Prerequisites
+
+To complete this quickstart, you need:
+
+- A ParDocs [account](https://www.pardocs.com)
+- An API key
+
+## Authentication
+
+All requests must include an `x-api-key` header with your API key.
+
+```json cURL
+curl https://api.pardocs.com/$PARDOCS_ENDPOINT \
+     -H "x-api-key: $PARDOCS_API_KEY" \
+     ...
+```
+
+## Next Steps
+
+Now that you have made your first ParDocs API request, it's time to explore additional features and capabilities!
