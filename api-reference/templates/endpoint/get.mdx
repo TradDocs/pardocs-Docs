@@ -1,0 +1,23 @@
+---
+title: "Get Templates"
+openapi: "openapi-templates GET /v1/templates"
+---
+
+The **Get Templates** endpoint retrieves a list of all templates that you created through the ParDocs API. Templates define the structure of the data you can extract from various documents using the API. This endpoint is useful for understanding the data formats and fields that can be extracted, ensuring you can properly process and utilize the data returned by the API.
+<RequestExample>
+```bash cURL
+curl --request GET \
+  --url https://api.pardocs.com/v1/templates \
+  --header 'x-api-key: <api-key>'
+```
+```python Python
+import requests
+
+url = "https://api.pardocs.com/v1/templates"
+headers = {"x-api-key": "<api-key>"}
+
+response = requests.get(url, headers=headers)
+
+print(response.json())
+```
+</RequestExample>

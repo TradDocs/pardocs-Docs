@@ -1,0 +1,34 @@
+---
+title: "Upload a Document"
+openapi: "openapi-documents POST /v1/documents"
+---
+
+The **Upload a Document** endpoint allows you to upload a document to the ParDocs API. You can submit the document either as a file or via a URL. This endpoint is used to add new documents for processing or storage.
+
+**Request Parameters:**
+
+- **file** (form-data, optional): The document file you want to upload. Provide this if you are uploading a file directly.
+- **url** (form-data, optional): The URL of the document you want to upload. Provide this if you are uploading a document from a URL.
+
+<RequestExample>
+```bash cURL
+curl --request POST \
+  --url https://api.pardocs.com/v1/documents \
+  --header 'Content-Type: multipart/form-data' \
+  --header 'x-api-key: <api-key>' \
+  --form file=@your/path/sample.pdf \
+  --form url=https://url_to_your_document.pdf
+```
+```python Python
+import requests
+
+url = "https://api.pardocs.com/v1/documents"
+headers = {"x-api-key": "<api-key>"}
+files = {"file": open("your/path/sample.pdf", "rb")}
+// files = {"url": (None, "https://url_to_your_document.pdf")}
+
+response = requests.post(url, headers=headers, files=files)
+
+print(response.json())
+```
+</RequestExample>

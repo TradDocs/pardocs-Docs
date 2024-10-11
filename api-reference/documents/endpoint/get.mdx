@@ -1,0 +1,28 @@
+---
+title: "Get Previous Document Results"
+openapi: "openapi-documents GET /v1/documents/{document_id}"
+---
+
+The **Get Previous Document Results** endpoint allows you to retrieve the extraction or splitter results of a previously processed document. This is useful for reviewing past extractions without reprocessing the document, thereby saving time and resources.
+
+**Path Parameters:**
+
+- `document_id` (string, required): The unique identifier of the document whose extraction results you want to retrieve.
+
+<RequestExample>
+```bash cURL
+curl --request GET \
+  --url https://api.pardocs.com/v1/documents/{document_id} \
+  --header 'x-api-key: <api-key>'
+```
+```python Python
+import requests
+
+url = "https://api.pardocs.com/v1/documents/{document_id}"
+headers = {"x-api-key": "<api-key>"}
+
+response = requests.get(url, headers=headers)
+
+print(response.json())
+```
+</RequestExample>

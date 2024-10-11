@@ -1,0 +1,38 @@
+---
+title: "Split a Document by Document Type"
+openapi: "openapi-documents POST /v1/documents/{document_id}/split"
+---
+
+The **Split a Document by Document Type** endpoint allows you to split an existing document into multiple documents based on the specified document types. This operation is useful for processing documents with different types of content or sections, ensuring that each part is categorized and handled according to its document type.
+
+**Request Body Parameters:**
+
+- `template_ids` (array of strings): A list of `template_id`s that specify how the document should be split. Each ID corresponds to a predefined template schema.
+
+<RequestExample>
+```bash cURL
+curl --request POST \
+  --url https://api.pardocs.com/v1/documents/{document_id}/split \
+  --header 'x-api-key: <api-key>'
+  --data '{
+  "template_ids": [
+    "<string>"
+  ]
+}'
+```
+```python Python
+import json
+import requests
+
+url = "https://api.pardocs.com/v1/documents/{document_id}/split"
+headers = {
+    "x-api-key": "<api-key>",
+    "Content-Type": "application/json"
+}
+data = {"template_ids": ["<string>"]}
+
+response = requests.post(url, headers=headers, data=json.dumps(data))
+
+print(response.json())
+```
+</RequestExample>

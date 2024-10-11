@@ -1,0 +1,24 @@
+---
+title: "Get Uploaded Documents"
+openapi: "openapi-documents GET /v1/documents"
+---
+
+The **Get Uploaded Documents** endpoint retrieves a list of documents that have been uploaded to the ParDocs API. This is useful for managing and reviewing the documents that have been submitted for processing.
+
+<RequestExample>
+```bash cURL
+curl --request GET \
+  --url https://api.pardocs.com/v1/documents \
+  --header 'x-api-key: <api-key>'
+```
+```python Python
+import requests
+
+url = "https://api.pardocs.com/v1/documents"
+headers = {"x-api-key": "<api-key>"}
+
+response = requests.get(url, headers=headers)
+
+print(response.json())
+```
+</RequestExample>

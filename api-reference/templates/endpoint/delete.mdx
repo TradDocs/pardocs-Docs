@@ -1,0 +1,28 @@
+---
+title: "Delete a Template"
+openapi: "openapi-templates DELETE /v1/templates/{template_id}"
+---
+
+The **Delete a Template** endpoint allows you to remove an existing template identified by `{template_id}`. This operation will delete the specified schema and it will no longer be available for data extraction tasks.
+
+Use this endpoint to clean up or manage your schemas by removing those that are no longer needed.
+
+<Note>Note that this process can also be done in the [ParDocs Console](https://www.pardocs.com)</Note>
+
+<RequestExample>
+```bash cURL
+curl --request DELETE \
+  --url https://api.pardocs.com/v1/templates/{template_id} \
+  --header 'x-api-key: <api-key>'
+```
+```python Python
+import requests
+
+url = "https://api.pardocs.com/v1/templates/{template_id}"
+headers = {"x-api-key": "<api-key>"}
+
+response = requests.delete(url, headers=headers)
+
+print(response.json())
+```
+</RequestExample>

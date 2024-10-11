@@ -1,0 +1,38 @@
+---
+title: Split and Extract a Document
+openapi: "openapi-documents POST /v1/documents/{document_id}/extraction"
+---
+
+The **Split and Extract a Document** endpoint allows you to process a document by splitting it according to specified document types and performing extraction on each split section. This is useful for handling complex documents where different parts of the document need to be analyzed or extracted separately based on defined template schemas.
+
+**Request Body Parameters:**
+
+- `template_ids` (array of strings): A list of `template_id`s that dictate how the document should be split and extracted. Each ID corresponds to a specific template schema that defines the rules for processing each section of the document.
+
+<RequestExample>
+```bash cURL
+curl --request POST \
+  --url https://api.pardocs.com/v1/documents/{document_id}/extraction \
+  --header 'x-api-key: <api-key>'
+  --data '{
+  "template_ids": [
+    "<string>"
+  ]
+}'
+```
+```python Python
+import json
+import requests
+
+url = "https://api.pardocs.com/v1/documents/{document_id}/extraction"
+headers = {
+    "x-api-key": "<api-key>",
+    "Content-Type": "application/json"
+}
+data = {"template_ids": ["<string>"]}
+
+response = requests.post(url, headers=headers, data=json.dumps(data))
+
+print(response.json())
+```
+</RequestExample>

@@ -1,0 +1,45 @@
+---
+title: "Create a Template"
+openapi: "openapi-templates POST /v1/templates"
+---
+
+The **Create a Template** endpoint allows you to define a new template for a specific document type in the ParDocs API. A template specifies the rules and structure for extracting data from documents. By creating a template, you can customize how data is extracted based on your specific needs, which can then be applied to various documents for processing.
+
+<Info>Each template has a single `{document_type}` linked to it.</Info>
+<Note>Note that this process can also be done in the [ParDocs Console](https://www.pardocs.com)</Note>
+
+**Request Body Parameters:**
+
+- `document_type` (string): Specifies the document type the schema applies to.
+- `template_data` (object): Contains the detailed schema definition for the extraction.
+
+<RequestExample>
+```bash cURL
+curl --request POST \
+  --url https://api.pardocs.com/v1/templates \
+  --header 'Content-Type: application/json' \
+  --header 'x-api-key: <api-key>' \
+  --data '{
+  "document_type": "<string>",
+  "template_data": {}
+}'
+```
+```python Python
+import json
+import requests
+
+url = "https://api.pardocs.com/v1/templates"
+headers = {
+    "x-api-key": "<api-key>",
+    "Content-Type": "application/json"
+}
+data = {
+    "document_type": "<string>",
+    "template_data": {}
+}
+
+response = requests.post(url, headers=headers, data=json.dumps(data))
+
+print(response.json())
+```
+</RequestExample>
