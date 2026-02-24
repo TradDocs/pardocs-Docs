@@ -181,16 +181,6 @@
               "type": "string"
             },
             "description": "The ID of document to extract."
-          },
-          {
-            "name": "include_coordinates",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false
-            },
-            "description": "When true, each extracted field in the response includes the source location: value, page number, and normalized bounding_box_coordinates [x1, y1, x2, y2] (0–1) so you can highlight or reference the exact region in the document."
           }
         ],
         "requestBody": {
@@ -213,7 +203,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successful Response. When include_coordinates=true, each value in extracted is an object with value, page, and bounding_box_coordinates (normalized [x1,y1,x2,y2]); otherwise values are plain strings/numbers.",
+            "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
@@ -245,117 +235,6 @@
                 "schema": {
                   "$ref": "#/components/schemas/Error"
                 }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v1/documents/extract": {
-      "post": {
-        "parameters": [
-          {
-            "name": "include_coordinates",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false
-            },
-            "description": "When true, each extracted field in result includes value, page, and normalized bounding_box_coordinates [x1, y1, x2, y2] (0–1) for the source region in the document."
-          },
-          {
-            "name": "force_exclusive_template",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false
-            },
-            "description": "When true, force the first template's document_type for the whole document instead of auto-splitting by type."
-          },
-          {
-            "name": "document_layout_analysis",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false
-            },
-            "description": "When true, run layout analysis before reading (e.g. for complex or table-heavy documents)."
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "type": "object",
-                "required": ["template_ids"],
-                "properties": {
-                  "file": {
-                    "type": "string",
-                    "format": "binary",
-                    "description": "Document file to extract from. Provide either file or url, not both."
-                  },
-                  "url": {
-                    "type": "string",
-                    "format": "uri",
-                    "description": "URL of the document to extract from. Provide either file or url, not both."
-                  },
-                  "template_ids": {
-                    "type": "array",
-                    "items": { "type": "string" },
-                    "description": "List of template_id values to use for splitting and extraction."
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful Response. Returns ocr, markdown, and result (array of { document_type, pages, properties }). When include_coordinates=true, each property value is an object with value, page, and bounding_box_coordinates.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "ocr": {
-                      "type": "array",
-                      "description": "OCR output per page from the document."
-                    },
-                    "markdown": {
-                      "type": "string",
-                      "description": "Converted markdown text of the full document."
-                    },
-                    "result": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "document_type": { "type": "string" },
-                          "pages": {
-                            "type": "array",
-                            "items": { "type": "integer" }
-                          },
-                          "properties": {
-                            "type": "object",
-                            "description": "Extracted key-value pairs (or value/page/bounding_box_coordinates when include_coordinates=true)."
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/Error" }
               }
             }
           }

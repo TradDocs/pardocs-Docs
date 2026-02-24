@@ -36,11 +36,7 @@
   "navigation": [
     {
       "group": "Get started",
-      "pages": [
-        "introduction",
-        "ratelimit",
-        "error"
-      ]
+      "pages": ["introduction", "ratelimit", "error"]
     },
     {
       "group": "Templates API",
@@ -58,7 +54,6 @@
         "api-reference/documents/endpoint/create",
         "api-reference/documents/endpoint/split",
         "api-reference/documents/endpoint/extract",
-        "api-reference/documents/endpoint/extract-inline",
         "api-reference/documents/endpoint/get"
       ]
     }
