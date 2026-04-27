@@ -5,6 +5,10 @@ openapi: "openapi-documents POST /v1/documents/{document_id}/extraction"
 
 The **Split and Extract a Document** endpoint allows you to process a document by splitting it according to specified document types and performing extraction on each split section. This is useful for handling complex documents where different parts of the document need to be analyzed or extracted separately based on defined template schemas.
 
+**Query Parameters:**
+
+- `include_coordinates` (boolean, optional): When `true`, the response includes the source location for each extracted value (page number and bounding box). Use this when you need to highlight or reference the exact region in the document where a value was found. Default is `false`.
+
 **Request Body Parameters:**
 
 - `template_ids` (array of strings): A list of `template_id`s that dictate how the document should be split and extracted. Each ID corresponds to a specific template schema that defines the rules for processing each section of the document.
@@ -12,8 +16,8 @@ The **Split and Extract a Document** endpoint allows you to process a document b
 <RequestExample>
 ```bash cURL
 curl --request POST \
-  --url https://api.pardocs.com/v1/documents/{document_id}/extraction \
-  --header 'x-api-key: <api-key>'
+  --url 'https://api.pardocs.com/v1/documents/{document_id}/extraction?include_coordinates=true' \
+  --header 'x-api-key: <api-key>' \
   --data '{
   "template_ids": [
     "<string>"
@@ -25,14 +29,25 @@ import json
 import requests
 
 url = "https://api.pardocs.com/v1/documents/{document_id}/extraction"
+params = {"include_coordinates": True}  # omit or set False for plain values
 headers = {
     "x-api-key": "<api-key>",
     "Content-Type": "application/json"
 }
 data = {"template_ids": ["<string>"]}
 
-response = requests.post(url, headers=headers, data=json.dumps(data))
+response = requests.post(url, headers=headers, params=params, data=json.dumps(data))
 
 print(response.json())
 ```
 </RequestExample>
+
+**Response when `include_coordinates=true`**
+
+When you pass `include_coordinates=true`, each extracted field in `extracted` is an object with the following shape instead of a plain string or number:
+
+- **`value`**: The extracted text or number (same as the non-coordinate response).
+- **`page`**: The 1-based page number where this value was found.
+- **`bounding_box_coordinates`**: Normalized bounding box `[x1, y1, x2, y2]` in the range 0–1 (relative to page width/height), so you can map the value back to a rectangle on the document for highlighting or overlay.
+
+This lets you show users exactly where each piece of data came from in the original document (e.g., for IR reports or table-heavy PDFs). When `include_coordinates` is `false` or omitted, `extracted` fields remain simple key–value pairs (e.g. `"analyst": "최보영"`).
